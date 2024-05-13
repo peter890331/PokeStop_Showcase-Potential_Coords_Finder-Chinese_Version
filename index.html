@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣當地時間</title>
+</head>
+<body>
+  <h1>台灣當地時間</h1>
+  <label for="datetime">請選擇日期與時間：</label>
+  <input type="datetime-local" id="datetime" name="datetime">
+  <button id="confirmButton">確定</button>
+  <p id="result"></p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="http://unpkg.com/browser-geo-tz@latest/dist/geotz.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
+  <script>
+    async function getLocalTimeFromCoordinates(latitude, longitude) {
+      try {
+        // 使用 browser-geo-tz 库来获取时区ID
+        var timezoneId = await GeoTZ.find(latitude, longitude);
+        console.log(timezoneId);
+        
+        // 获取当前时间的 Moment.js 对象
+        var nowTWDate = moment.utc().tz('Asia/Taipei');
+        console.log('當前台灣時間: ' + nowTWDate.format("MM/DD HH:mm"));
+
+        // 使用 Moment.js 处理夏令时和冬令时
+        const localTime = moment(nowTWDate).tz(timezoneId[0]);
+        console.log('當地時間: ' + localTime.format("MM/DD HH:mm"));
+        return localTime;
+
+      } catch (error) {
+        console.error('獲取當地時間時出錯:', error);
+        return null;
+      }
+    }
+
+    document.getElementById('confirmButton').addEventListener('click', async function() {
+        // 取得選擇的日期與時間
+        var selectedDateTime = new Date(document.getElementById('datetime').value);
+        selectedDateTime = moment(selectedDateTime);
+        console.log('輸入的結束時間： ' + selectedDateTime.format("MM/DD HH:mm"));
+        console.log('-----------------------------');
+
+        // 讀取座標數據
+        const coordinatesResponse = await fetch('coordinates.json');
+        const coordinates = await coordinatesResponse.json();
+
+        // 尋找符合條件的座標
+        let minTimeDiff = Infinity;
+        let matchedCoordinates = [];
+
+        for (const coordinate of coordinates) {
+            const latitude = coordinate.latitude;
+            const longitude = coordinate.longitude;
+            console.log('緯度：' + latitude + ', 經度：' + longitude);
+            const localTime = await getLocalTimeFromCoordinates(latitude, longitude);
+
+            if (localTime && localTime.format("MM/DD HH:mm") < selectedDateTime.format("MM/DD HH:mm")) {
+                console.log(Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm")));
+                const timeDiff = Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm"));
+                if (timeDiff < minTimeDiff) {
+                    minTimeDiff = timeDiff;
+                    // 清空之前的匹配座標
+                    matchedCoordinates = [];
+                    // 将当前座标添加到匹配座标中
+                    matchedCoordinates.push(coordinate);
+                } else if (timeDiff === minTimeDiff) {
+                    // 如果时间差与最小时间差相同，则将当前座标添加到匹配座标中
+                    matchedCoordinates.push(coordinate);
+                }
+            }
+            console.log('-----------------------------');
+        }
+        // 将结果显示在网页上
+        const resultElement = document.getElementById('result');
+        if (matchedCoordinates.length > 0) {
+            let resultText = '最接近的座標：<br>';
+            for (const coordinate of matchedCoordinates) {
+                resultText += `${coordinate.latitude}, ${coordinate.longitude} <button onclick="copyToClipboard('${coordinate.latitude}, ${coordinate.longitude}')">複製</button><br>`;
+            }
+            resultElement.innerHTML = resultText;
+            } else {
+            resultElement.innerHTML = '找不到符合條件的座標。';
+            }
+        });
+
+    // 复制文本到剪贴板函数
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          // 创建一个提示框并显示
+          const alertBox = document.createElement('div');
+          alertBox.innerHTML = '座標已複製到剪貼簿';
+          alertBox.id = 'alertBox';
+          alertBox.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            z-index: 9999;
+          `;
+          document.body.appendChild(alertBox);
+          setTimeout(function() {
+            // 2秒后移除提示框
+            alertBox.parentNode.removeChild(alertBox);
+          }, 2000); // 2秒后自动关闭提示框
+        })
+        .catch(err => console.error('無法複製座標:', err));
+    }
+  </script>
+</body>
+</html>
