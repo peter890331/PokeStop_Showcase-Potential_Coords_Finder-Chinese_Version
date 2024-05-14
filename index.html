@@ -3,105 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台灣當地時間</title>
+  <title>潛在寶可補給站選秀會座標查詢器</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+      margin: 0;
+      background-color: #7bcff7;
+    }
+    #formContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    label {
+      margin-bottom: 20px;
+    }
+    input {
+      margin-bottom: 60px;
+    }
+    #confirmButtonContainer {
+      display: flex;
+      align-items: center;
+    }
+    #confirmButton {
+      margin-left: 10px;
+      margin-bottom: 60px;
+    }
+    #result {
+      position: absolute;
+      margin-top: 200px;
+    }
+  </style>
 </head>
 <body>
-  <h1>台灣當地時間</h1>
-  <label for="datetime">請選擇日期與時間：</label>
-  <input type="datetime-local" id="datetime" name="datetime">
-  <button id="confirmButton">確定</button>
-  <p id="result"></p>
+  <img src="PokemonGO_icon.png" alt="PokemonGO_icon.png" style="width: auto; height: 25%;">
+  <div style="position: relative;">
+    <h1>潛在寶可補給站選秀會座標查詢器</h1>
+    <img src="Showcase_icon.png" alt="Showcase_icon.png" style="width: auto; height: 75%; position: absolute; top: -10px; left: 45px; z-index: -1; transform: rotate(-20deg);">
+  </div>
+  <div id="formContainer">
+    <label for="datetime">請選擇寶可補給站選秀會在台灣時區結束的日期與時間：</label>
+    <div id="confirmButtonContainer">
+      <input type="datetime-local" id="datetime" name="datetime">
+      <button id="confirmButton">確定</button>
+    </div>
+    <p id="result"></p>
+  </div>
 
+  <!-- 引入 moment.js 庫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="http://unpkg.com/browser-geo-tz@latest/dist/geotz.js"></script>
+  <!-- 引入 browser-geo-tz 庫 -->
+  <script src="https://unpkg.com/browser-geo-tz@latest/dist/geotz.js"></script>
+  <!-- 引入 moment-timezone 庫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 
   <script>
-    async function getLocalTimeFromCoordinates(latitude, longitude) {
+    // 獲得指定座標的當地時間和UTC偏移量
+    async function getLocalTimeAndUTCOffset(latitude, longitude) {
       try {
-        // 使用 browser-geo-tz 库来获取时区ID
+        // 使用 browser-geo-tz 庫来獲得指定座標的時區ID
         var timezoneId = await GeoTZ.find(latitude, longitude);
         console.log(timezoneId);
         
-        // 获取当前时间的 Moment.js 对象
+        // 獲得當前的台灣時間
         var nowTWDate = moment.utc().tz('Asia/Taipei');
         console.log('當前台灣時間: ' + nowTWDate.format("MM/DD HH:mm"));
 
-        // 使用 Moment.js 处理夏令时和冬令时
+        // 以時區ID處理夏令和冬令時區，獲得當地時間
         const localTime = moment(nowTWDate).tz(timezoneId[0]);
         console.log('當地時間: ' + localTime.format("MM/DD HH:mm"));
-        return localTime;
 
-      } catch (error) {
-        console.error('獲取當地時間時出錯:', error);
+        // 獲得當地UTC偏移量
+        const utcOffset = localTime.utcOffset()/60;
+        console.log('UTC偏移量: ' + utcOffset);
+        
+        return { localTime, utcOffset };
+      } 
+      catch (error) {
+        console.error('獲得指定座標的當地時間時出錯:', error);
         return null;
       }
     }
 
     document.getElementById('confirmButton').addEventListener('click', async function() {
-        // 取得選擇的日期與時間
+        // 取得輸入的日期與時間
         var selectedDateTime = new Date(document.getElementById('datetime').value);
         selectedDateTime = moment(selectedDateTime);
         console.log('輸入的結束時間： ' + selectedDateTime.format("MM/DD HH:mm"));
         console.log('-----------------------------');
 
-        // 讀取座標數據
-        const coordinatesResponse = await fetch('coordinates.json');
-        const coordinates = await coordinatesResponse.json();
+        // 讀取資料庫中的座標數據
+        const coordinates = await fetchCoordinates();
 
         // 尋找符合條件的座標
         let minTimeDiff = Infinity;
         let matchedCoordinates = [];
-
+        
+        // 遍歷資料庫中的所有座標數據
         for (const coordinate of coordinates) {
-            const latitude = coordinate.latitude;
-            const longitude = coordinate.longitude;
+            const latitude = coordinate[0];
+            const longitude = coordinate[1];
             console.log('緯度：' + latitude + ', 經度：' + longitude);
-            const localTime = await getLocalTimeFromCoordinates(latitude, longitude);
+            const { localTime, utcOffset } = await getLocalTimeAndUTCOffset(latitude, longitude);
 
+            // 如果當地時間還沒到輸入的日期與時間，且只篩選最接近的時區
             if (localTime && localTime.format("MM/DD HH:mm") < selectedDateTime.format("MM/DD HH:mm")) {
                 console.log(Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm")));
                 const timeDiff = Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm"));
                 if (timeDiff < minTimeDiff) {
-                    minTimeDiff = timeDiff;
-                    // 清空之前的匹配座標
-                    matchedCoordinates = [];
-                    // 将当前座标添加到匹配座标中
-                    matchedCoordinates.push(coordinate);
-                } else if (timeDiff === minTimeDiff) {
-                    // 如果时间差与最小时间差相同，则将当前座标添加到匹配座标中
-                    matchedCoordinates.push(coordinate);
+                  minTimeDiff = timeDiff;
+                  // 清空之前的匹配座標
+                  matchedCoordinates = [];
+                  // 將當前座標加入到匹配座標中
+                  matchedCoordinates.push({ coordinate, utcOffset });
+                } 
+                else if (timeDiff === minTimeDiff) {
+                  // 如果時間差與最小時間差相同，則將目前座標新增至符合座標中
+                  matchedCoordinates.push({ coordinate, utcOffset });
                 }
             }
             console.log('-----------------------------');
         }
-        // 将结果显示在网页上
+        // 將結果顯示在網頁上
         const resultElement = document.getElementById('result');
         if (matchedCoordinates.length > 0) {
-            let resultText = '最接近的座標：<br>';
-            for (const coordinate of matchedCoordinates) {
-                resultText += `${coordinate.latitude}, ${coordinate.longitude} <button onclick="copyToClipboard('${coordinate.latitude}, ${coordinate.longitude}')">複製</button><br>`;
-            }
-            resultElement.innerHTML = resultText;
-            } else {
-            resultElement.innerHTML = '找不到符合條件的座標。';
-            }
+          let resultText = '最接近的潛在座標：<br>';
+          for (const matchedCoordinate of matchedCoordinates) {
+              const coordinate = matchedCoordinate.coordinate;
+              let utcOffset = matchedCoordinate.utcOffset;
+              if (utcOffset > 0) {
+                utcOffset = `+${utcOffset}`;
+              }
+              console.log(utcOffset);
+              resultText += `UTC ${utcOffset}:  「${coordinate[0]}, ${coordinate[1]}」 <button onclick="copyToClipboard('${coordinate[0]}, ${coordinate[1]}')">複製</button><br>`;
+          }
+          resultElement.innerHTML = resultText;
+          } 
+          else {
+          resultElement.innerHTML = '找不到符合條件的潛在座標。';
+          }
         });
 
-    // 复制文本到剪贴板函数
+        // 讀取資料庫中的座標數據
+        async function fetchCoordinates() {
+          try {
+            const response = await fetch('coordinates.json');
+            return await response.json();
+          } 
+          catch (error) {
+            console.error('無法讀取資料庫中的座標數據:', error);
+            return [];
+          }
+        }
+
+    // 建立複製按鈕
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text)
         .then(() => {
-          // 创建一个提示框并显示
+          // 建立一個提示框並顯示
           const alertBox = document.createElement('div');
           alertBox.innerHTML = '座標已複製到剪貼簿';
           alertBox.id = 'alertBox';
           alertBox.style.cssText = `
             position: fixed;
-            top: 50%;
+            bottom: 5%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #f44336;
+            background-color: #4a88ed;
             color: white;
             padding: 15px 30px;
             border-radius: 5px;
@@ -109,12 +182,14 @@
           `;
           document.body.appendChild(alertBox);
           setTimeout(function() {
-            // 2秒后移除提示框
+            // 2秒後移除提示框
             alertBox.parentNode.removeChild(alertBox);
-          }, 2000); // 2秒后自动关闭提示框
+          }, 2000); // 2秒後自動關閉提示框
         })
         .catch(err => console.error('無法複製座標:', err));
     }
+    
   </script>
+  <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 20%; position: absolute; bottom: 50px; right: 50px; z-index: -1;">
 </body>
 </html>
