@@ -11,20 +11,20 @@
       align-items: center;
       justify-content: flex-start;
       height: 250vh;
-      margin-top: 100px; /* 設置上方 margin */
+      margin-top: 100px;                  /* 設置上方 margin */
       background-color: #7bcff7;
     }
     footer {
-      background-color: #54ddf5; /* 背景顏色 */
-      color: #fff; /* 文字顏色 */
-      padding: 1px; /* 內邊距 */
-      text-align: center; /* 文字置中 */
-      position: fixed; /* 固定定位 */
-      bottom: 0; /* 距離視窗底部的距離 */
-      width: 100%; /* 寬度填滿視窗 */
+      background-color: #54ddf5;        /* 背景顏色 */
+      color: #fff;                      /* 文字顏色 */
+      padding: 1px;                       /* 內邊距 */
+      text-align: center;                 /* 文字置中 */
+      position: fixed;                    /* 固定定位 */
+      bottom: 0;                          /* 距離視窗底部的距離 */
+      width: 100%;                        /* 寬度填滿視窗 */
     }
     h1 {
-    font-size: 24px; /* 設定字體大小為 24 像素 */
+    font-size: 24px;                      /* 設定字體大小為 24 像素 */
     }
     #formContainer {
       display: flex;
@@ -142,6 +142,7 @@
             }
             console.log('-----------------------------');
         }
+
         // 將結果顯示在網頁上
         const resultElement = document.getElementById('result');
         if (matchedCoordinates.length > 0) {
@@ -203,9 +204,9 @@
     }
     
   </script>
-  <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 20%; position: absolute; bottom: 120px; right: 30px; z-index: -1;">
+  <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 10%; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
 
-  <footer>
+  <footer style="position: fixed;">
     <p>Copyright © Peter Yu</p>
     <p>僅供參考，不負任何法律責任。其餘詳細內容可見我的<a href="https://github.com/peter890331/My_potential_PokeStop_Showcase_croods">GitHub</a>，方便的話可以幫我加個Star。</p>
   </footer>
