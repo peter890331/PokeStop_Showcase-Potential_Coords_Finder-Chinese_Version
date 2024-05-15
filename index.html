@@ -253,93 +253,93 @@
 
     // 顯示5秒的圖片
     function show_pikachu_say_yes_Image() {
-        const temporaryImage = document.createElement('img');
-        temporaryImage.src = 'pikachu_say_yes.png';
-        temporaryImage.alt = 'pikachu_say_yes.png';
-        temporaryImage.style.cssText = `
-            width: 200px;
-            height: auto;
-            position: fixed;
-            bottom: 200px;
-            right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
-            z-index: -1;
-        `;
-        document.body.appendChild(temporaryImage);
+      const temporaryImage = document.createElement('img');
+      temporaryImage.src = 'pikachu_say_yes.png';
+      temporaryImage.alt = 'pikachu_say_yes.png';
+      temporaryImage.style.cssText = `
+          width: 200px;
+          height: auto;
+          position: fixed;
+          bottom: 200px;
+          right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+          z-index: -1;
+      `;
+      document.body.appendChild(temporaryImage);
 
-        // 設置計時器，在5秒後刪除臨時圖片
-        setTimeout(function() {
-            temporaryImage.parentNode.removeChild(temporaryImage);
-        }, 5000);
+      // 設置計時器，在5秒後刪除臨時圖片
+      setTimeout(function() {
+          temporaryImage.parentNode.removeChild(temporaryImage);
+      }, 5000);
     }
 
     // 顯示5秒的圖片
     function show_pikachu_say_no_Image() {
-    const temporaryImage = document.createElement('img');
-    temporaryImage.src = 'pikachu_say_no.png';
-    temporaryImage.alt = 'pikachu_say_no.png';
-    temporaryImage.style.cssText = `
-        width: 200px;
-        height: auto;
-        position: fixed;
-        bottom: 200px;
-        right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
-        z-index: -1;
-    `;
-    document.body.appendChild(temporaryImage);
+      const temporaryImage = document.createElement('img');
+      temporaryImage.src = 'pikachu_say_no.png';
+      temporaryImage.alt = 'pikachu_say_no.png';
+      temporaryImage.style.cssText = `
+          width: 200px;
+          height: auto;
+          position: fixed;
+          bottom: 200px;
+          right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+          z-index: -1;
+      `;
+      document.body.appendChild(temporaryImage);
 
-    // 設置計時器，在5秒後刪除臨時圖片
-    setTimeout(function() {
-        temporaryImage.parentNode.removeChild(temporaryImage);
-    }, 5000);
-    }
+      // 設置計時器，在5秒後刪除臨時圖片
+      setTimeout(function() {
+          temporaryImage.parentNode.removeChild(temporaryImage);
+      }, 5000);
+      }
 
-    window.onload = function() {
-    // 在這裡觸發短暫圖片事件
-    setTimeout(function() {
-        show_pikachu_say_hi_Image();
-    }, 1000); // 等待1秒後顯示第一張圖片
+      window.onload = function() {
+      // 在這裡觸發短暫圖片事件
+      setTimeout(function() {
+          show_pikachu_say_hi_Image();
+      }, 1000); // 等待1秒後顯示第一張圖片
     };
 
     // 顯示5秒的圖片
     function show_pikachu_say_hi_Image() {
-    const temporaryImage = document.createElement('img');
-    temporaryImage.src = 'pikachu_say_hi.png';
-    temporaryImage.alt = 'pikachu_say_hi.png';
-    temporaryImage.style.cssText = `
-        width: 200px;
-        height: auto;
-        position: fixed;
-        bottom: 200px;
-        right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
-        z-index: -1;
-    `;
-    document.body.appendChild(temporaryImage);
+      const temporaryImage = document.createElement('img');
+      temporaryImage.src = 'pikachu_say_hi.png';
+      temporaryImage.alt = 'pikachu_say_hi.png';
+      temporaryImage.style.cssText = `
+          width: 200px;
+          height: auto;
+          position: fixed;
+          bottom: 200px;
+          right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+          z-index: -1;
+      `;
+      document.body.appendChild(temporaryImage);
 
-    // 設置計時器，在5秒後刪除臨時圖片
-    setTimeout(function() {
-        temporaryImage.parentNode.removeChild(temporaryImage);
-    }, 5000);
+      // 設置計時器，在5秒後刪除臨時圖片
+      setTimeout(function() {
+          temporaryImage.parentNode.removeChild(temporaryImage);
+      }, 5000);
     }
 
     // 顯示5秒的圖片
     function show_pikachu_say_plz_Image() {
-    const temporaryImage = document.createElement('img');
-    temporaryImage.src = 'pikachu_say_plz.png';
-    temporaryImage.alt = 'pikachu_say_plz.png';
-    temporaryImage.style.cssText = `
-        width: 200px;
-        height: auto;
-        position: fixed;
-        bottom: 80px;
-        right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
-        z-index: -1;
-    `;
-    document.body.appendChild(temporaryImage);
+      const temporaryImage = document.createElement('img');
+      temporaryImage.src = 'pikachu_say_plz.png';
+      temporaryImage.alt = 'pikachu_say_plz.png';
+      temporaryImage.style.cssText = `
+          width: 200px;
+          height: auto;
+          position: fixed;
+          bottom: 80px;
+          right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+          z-index: -1;
+      `;
+      document.body.appendChild(temporaryImage);
 
-    // 設置計時器，在10秒後刪除臨時圖片
-    setTimeout(function() {
-        temporaryImage.parentNode.removeChild(temporaryImage);
-    }, 10000);
+      // 設置計時器，在10秒後刪除臨時圖片
+      setTimeout(function() {
+          temporaryImage.parentNode.removeChild(temporaryImage);
+      }, 10000);
     }
 
 
@@ -352,13 +352,13 @@
     }
 
     function startIdleTimeout() {
-        // 設置閒置時間為 1 分鐘
-        idleTimeout = setTimeout(function() {
-            // 在閒置時間到達時執行某些操作，例如顯示一個提示框或觸發某個事件
-            show_pikachu_say_plz_Image();
-            // 在每次閒置後重新啟動閒置計時
-            startIdleTimeout();
-        }, 60000); // 1 分鐘
+      // 設置閒置時間為 1 分鐘
+      idleTimeout = setTimeout(function() {
+          // 在閒置時間到達時執行某些操作，例如顯示一個提示框或觸發某個事件
+          show_pikachu_say_plz_Image();
+          // 在每次閒置後重新啟動閒置計時
+          startIdleTimeout();
+      }, 60000); // 1 分鐘
     }
 
     // 監聽滑鼠移動事件
@@ -378,7 +378,7 @@
   <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 100px; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
 
   <footer style="position: fixed;">
-    <p>Copyright © Peter Yu，僅供參考，不負任何法律責任。其餘詳細內容可見我的<a href="https://github.com/peter890331/My_potential_PokeStop_Showcase_croods">GitHub</a>，方便的話可以幫我加個Star，謝謝。</p>
+    <p>Copyright © Peter Yu，僅供參考，不負任何法律責任。其餘詳細內容可見我的<a href="https://github.com/peter890331/My_potential_PokeStop_Showcase_croods">GitHub</a>，喜歡的話可以幫我加個Star喔！謝謝。</p>
   </footer>
 
 </body>
