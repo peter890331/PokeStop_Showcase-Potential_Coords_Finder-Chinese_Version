@@ -10,7 +10,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 200vh;
+      height: 250vh;
       margin-top: 100px;                  /* 設置上方 margin */
       background-color: #7bcff7;
     }
@@ -49,9 +49,13 @@
       margin-bottom: 60px;
     }
     #result {
-      position: absolute;
-      margin-top: 200px;
+      position: relative;
+      margin-top: 10px;
     }
+    .copyButton {
+      width: 300px; /* 按鈕的寬度，您可以根據需要調整 */
+    }
+    
   </style>
 </head>
 <body>
@@ -79,112 +83,129 @@
 
   <script>
     // 獲得指定座標的當地時間和UTC偏移量
-    async function getLocalTimeAndUTCOffset(latitude, longitude) {
+    async function getLocalTimeAndUTCOffset(latitude, longitude, selectedDateTime) {
       try {
         // 使用 browser-geo-tz 庫来獲得指定座標的時區ID
         var timezoneId = await GeoTZ.find(latitude, longitude);
         console.log(timezoneId);
         
         // 獲得當前的台灣時間
-        var nowTWDate = moment.utc().tz('Asia/Taipei');
-        console.log('當前台灣時間: ' + nowTWDate.format("MM/DD HH:mm"));
+        var nowTWDate = moment.utc().tz("Asia/Taipei");
+        console.log("當前台灣時間: " + nowTWDate.format("MM/DD HH:mm"));
 
         // 以時區ID處理夏令和冬令時區，獲得當地時間
         const localTime = moment(nowTWDate).tz(timezoneId[0]);
-        console.log('當地時間: ' + localTime.format("MM/DD HH:mm"));
+        const localTime_ = moment(nowTWDate).tz(timezoneId[0]);
+        console.log("當地時間: " + localTime.format("MM/DD HH:mm"));
 
         // 獲得當地UTC偏移量
         const utcOffset = localTime.utcOffset()/60;
-        console.log('UTC偏移量: ' + utcOffset);
+        console.log("UTC偏移量: " + utcOffset);
+
+        // 計算與指定時間的時間差
+        const timeDiff = selectedDateTime.diff(localTime_.add(-8+utcOffset, "hours"), "minutes");
+        const hoursDiff = Math.floor(timeDiff / 60);
+        const minutesDiff = timeDiff % 60;
         
-        return { localTime, utcOffset };
+        return { localTime, utcOffset, hoursDiff, minutesDiff };
       } 
       catch (error) {
-        console.error('獲得指定座標的當地時間時出錯:', error);
+        console.error("獲得指定座標的當地時間時出錯:", error);
         return null;
       }
     }
 
-    document.getElementById('confirmButton').addEventListener('click', async function() {
+    document.getElementById("confirmButton").addEventListener("click", async function() {
         // 取得輸入的日期與時間
-        var selectedDateTime = new Date(document.getElementById('datetime').value);
+        var selectedDateTime = new Date(document.getElementById("datetime").value);
+
+        // 檢查是否選擇了日期和時間
+        if (isNaN(selectedDateTime.getTime())) {
+          showWarningMessage("請選擇日期與時間！");
+          return; // 不執行後續代碼
+        }
+
         selectedDateTime = moment(selectedDateTime);
-        console.log('輸入的結束時間： ' + selectedDateTime.format("MM/DD HH:mm"));
-        console.log('-----------------------------');
+        console.log("輸入的結束時間： " + selectedDateTime.format("MM/DD HH:mm"));
+        console.log("-----------------------------");
+
 
         // 讀取資料庫中的座標數據
         const coordinates = await fetchCoordinates();
 
         // 尋找符合條件的座標
-        let minTimeDiff = Infinity;
-        let matchedCoordinates = [];
+        let allMatches = [];
         
         // 遍歷資料庫中的所有座標數據
         for (const coordinate of coordinates) {
             const latitude = coordinate[0];
             const longitude = coordinate[1];
-            console.log('緯度：' + latitude + ', 經度：' + longitude);
-            const { localTime, utcOffset } = await getLocalTimeAndUTCOffset(latitude, longitude);
+            console.log("緯度：" + latitude + ", 經度：" + longitude);
+            const { localTime, utcOffset, hoursDiff, minutesDiff } = await getLocalTimeAndUTCOffset(latitude, longitude, selectedDateTime);
 
             // 如果當地時間還沒到輸入的日期與時間，且只篩選最接近的時區
             if (localTime && localTime.format("MM/DD HH:mm") < selectedDateTime.format("MM/DD HH:mm")) {
+                console.log("localTime: " + localTime.format("MMDDHHmm"));
+                console.log("selectedDateTime: " + selectedDateTime.format("MMDDHHmm"));
                 console.log(Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm")));
-                const timeDiff = Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm"));
-                if (timeDiff < minTimeDiff) {
-                  minTimeDiff = timeDiff;
-                  // 清空之前的匹配座標
-                  matchedCoordinates = [];
-                  // 將當前座標加入到匹配座標中
-                  matchedCoordinates.push({ coordinate, utcOffset });
-                } 
-                else if (timeDiff === minTimeDiff) {
-                  // 如果時間差與最小時間差相同，則將目前座標新增至符合座標中
-                  matchedCoordinates.push({ coordinate, utcOffset });
-                }
+                console.log("剩餘時間：" + hoursDiff + " 小時 " + minutesDiff + " 分鐘");
+                const Diff = Math.abs(localTime.format("MMDDHHmm") - selectedDateTime.format("MMDDHHmm"));
+                allMatches.push({ coordinate, utcOffset, hoursDiff, minutesDiff, Diff }); 
             }
-            console.log('-----------------------------');
+            console.log("-----------------------------");
         }
 
+        // 根據時間差排序所有匹配
+        allMatches.sort((a, b) => a.Diff - b.Diff);
+
+        // 只輸出前 20 個匹配
+        const top20Matches = allMatches.slice(0, 20);
+
         // 將結果顯示在網頁上
-        const resultElement = document.getElementById('result');
-        if (matchedCoordinates.length > 0) {
-          let resultText = '最接近的潛在座標：<br>';
-          for (const matchedCoordinate of matchedCoordinates) {
-              const coordinate = matchedCoordinate.coordinate;
-              let utcOffset = matchedCoordinate.utcOffset;
-              if (utcOffset > 0) {
+        const resultElement = document.getElementById("result");
+        if (top20Matches.length > 0) {
+          let resultText = "最接近的潛在座標：<br><br>";
+          for (const top20Matche of top20Matches) {
+              const coordinate = top20Matche.coordinate;
+              let utcOffset = top20Matche.utcOffset;
+              let hoursDiff = top20Matche.hoursDiff;
+              let minutesDiff = top20Matche.minutesDiff;
+              if (utcOffset >= 0) {
                 utcOffset = `+${utcOffset}`;
               }
-              console.log(utcOffset);
-              resultText += `UTC ${utcOffset}:  「${coordinate[0]}, ${coordinate[1]}」 <button onclick="copyToClipboard('${coordinate[0]}, ${coordinate[1]}')">複製</button><br>`;
+              const formattedCoordinate = coordinate.map(coord => coord.toFixed(6));
+              // resultText += `UTC ${utcOffset}：  「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」 <button onclick="copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")">複製</button><br>`;
+              resultText += `UTC ${utcOffset}，剩餘時間 ${hoursDiff} 小時 ${minutesDiff} 分鐘：  <br>「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」<br><button class="copyButton" onclick="copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")">複製</button><br><br>`;
           }
           resultElement.innerHTML = resultText;
+          show_pikachu_say_yes_Image();
           } 
           else {
-          resultElement.innerHTML = '找不到符合條件的潛在座標。';
+          resultElement.innerHTML = "找不到符合條件的潛在座標。";
+          show_pikachu_say_no_Image();
           }
         });
 
         // 讀取資料庫中的座標數據
         async function fetchCoordinates() {
           try {
-            const response = await fetch('coordinates.json');
+            const response = await fetch("coordinates.json");
             return await response.json();
           } 
           catch (error) {
-            console.error('無法讀取資料庫中的座標數據:', error);
+            console.error("無法讀取資料庫中的座標數據:", error);
             return [];
           }
         }
 
-    // 建立複製按鈕
+    // 顯示提示框
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text)
         .then(() => {
           // 建立一個提示框並顯示
-          const alertBox = document.createElement('div');
-          alertBox.innerHTML = '座標已複製到剪貼簿';
-          alertBox.id = 'alertBox';
+          const alertBox = document.createElement("div");
+          alertBox.innerHTML = "座標已複製到剪貼簿";
+          alertBox.id = "alertBox";
           alertBox.style.cssText = `
             position: fixed;
             bottom: 10%;
@@ -202,11 +223,77 @@
             alertBox.parentNode.removeChild(alertBox);
           }, 2000); // 2秒後自動關閉提示框
         })
-        .catch(err => console.error('無法複製座標:', err));
+        .catch(err => console.error("無法複製座標:", err));
+    }
+
+    // 顯示警告框
+    function showWarningMessage(message) {
+      // 建立一個警告框並顯示
+      const alertBox = document.createElement("div");
+      alertBox.innerHTML = message;
+      alertBox.id = "alertBox";
+      alertBox.style.cssText = `
+          position: fixed;
+          bottom: 10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #FF0000; /* 紅色 */
+          color: white;
+          padding: 15px 30px;
+          border-radius: 5px;
+          z-index: 9999;
+      `;
+      document.body.appendChild(alertBox);
+      setTimeout(function() {
+          // 3秒後移除警告框
+          alertBox.parentNode.removeChild(alertBox);
+      }, 3000); // 3秒後自動關閉警告框
+    }
+
+    // 顯示5秒的圖片
+    function show_pikachu_say_yes_Image() {
+        const temporaryImage = document.createElement('img');
+        temporaryImage.src = 'pikachu_say_yes.png';
+        temporaryImage.alt = 'pikachu_say_yes.png';
+        temporaryImage.style.cssText = `
+            width: auto;
+            height: 40px;
+            position: fixed;
+            bottom: 200px;
+            right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+            z-index: 9999;
+        `;
+        document.body.appendChild(temporaryImage);
+
+        // 設置計時器，在5秒後刪除臨時圖片
+        setTimeout(function() {
+            temporaryImage.parentNode.removeChild(temporaryImage);
+        }, 5000);
+    }
+
+    // 顯示5秒的圖片
+    function show_pikachu_say_no_Image() {
+    const temporaryImage = document.createElement('img');
+    temporaryImage.src = 'pikachu_say_no.png';
+    temporaryImage.alt = 'pikachu_say_no.png';
+    temporaryImage.style.cssText = `
+        width: auto;
+        height: 40px;
+        position: fixed;
+        bottom: 200px;
+        right: 120px; /* 調整位置，讓圖片和原來的圖片不重疊 */
+        z-index: 9999;
+    `;
+    document.body.appendChild(temporaryImage);
+
+    // 設置計時器，在5秒後刪除臨時圖片
+    setTimeout(function() {
+        temporaryImage.parentNode.removeChild(temporaryImage);
+    }, 5000);
     }
     
   </script>
-  <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 10%; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
+  <img src="pikachu.png" alt="pikachu.png" style="width: auto; height: 100px; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
 
   <footer style="position: fixed;">
     <p>Copyright © Peter Yu，僅供參考，不負任何法律責任。其餘詳細內容可見我的<a href="https://github.com/peter890331/My_potential_PokeStop_Showcase_croods">GitHub</a>，方便的話可以幫我加個Star，謝謝。</p>
