@@ -16,6 +16,7 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
   https://peter890331.github.io/PokeStop_Showcase-Potential_Croods_Finder/    
       
   喜歡的話可以幫我加個Star喔！謝謝。   
+  <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/Star.png" width="150px">
       
   <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/webpage1.png" width="500px">   
   
