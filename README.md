@@ -13,6 +13,7 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 
 ## Webpage
   [寶可補給站選秀會 - 潛在座標查詢器 (PokeStop_Showcase-Potential_Croods_Finder)][1]    
+  https://peter890331.github.io/PokeStop_Showcase-Potential_Croods_Finder/    
   <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/webpage1.png" width="500px">   
   
   [1]: https://peter890331.github.io/PokeStop_Showcase-Potential_Croods_Finder/
