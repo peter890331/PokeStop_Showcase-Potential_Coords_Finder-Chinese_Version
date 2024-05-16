@@ -57,6 +57,9 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 ## Make updates, For Developers or the future ?
 這些座標由我手動不定時添加，但我一個人人力有限，很難大量補充更多的潛在座標，所以如果有人也有自己發現到的潛在座標想要幫忙添加幫助其他玩家，也許可以私訊我的信箱？或是開個Issue告訴我？非常感謝。
 
+### 座標資料庫更新日誌
+2024/05/16：共0個潛在座標
+
 ---
 
 ### ❗ 再次警告：僅以此練習網頁製作，請勿在遊戲中使用外掛，否則後果自負！本人對此內容不負任何法律責任。 ❗    
