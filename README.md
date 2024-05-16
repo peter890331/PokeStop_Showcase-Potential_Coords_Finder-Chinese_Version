@@ -12,7 +12,8 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/icon.png" width="300px">
 
 ## Webpage
-  [寶可補給站選秀會 - 潛在座標查詢器 (PokeStop_Showcase-Potential_Croods_Finder)][1]
+  [寶可補給站選秀會 - 潛在座標查詢器 (PokeStop_Showcase-Potential_Croods_Finder)][1]    
+  <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/webpage1.png" width="500px">   
   
   [1]: https://peter890331.github.io/PokeStop_Showcase-Potential_Croods_Finder/
   
@@ -41,14 +42,16 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 
 ### 使用步驟：
   1. 先確定當前有特殊活動正在舉辦選秀會。
-  2. 使用瀏覽器打開[網頁][1]。
+  2. 使用瀏覽器打開[網頁][1]。    
+     <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/webpage1.png" width="200px">   
   3. 在日期與時間輸入框中輸入選秀會在**台灣時區**結束的日期與時間，並按下確定。    
      （只提供給台灣時區的人遊玩使用。）
   4. 選擇想要參加選秀會的當地座標並點擊複製。    
-     （若網頁的座標資料庫中查詢得到在其他時區還有尚未結束的選秀會可以參加，就會顯示最多前20個最接近的潛在座標以供複製；若查詢不到，可能是全球範圍內的選秀會都已結束，或至少在座標資料庫中的範圍都已結束，這時將會顯示找不到符合條件的潛在座標。）
-  5. 使用飛人軟體飛到該當地座標，打開Pokémon Go在當地四處繞繞尋找選秀會參加。
-  6. 若沒有找到選秀會，或沒有找到未被佔領的選秀會，則重新選擇想要參加選秀會的當地座標。
-  7. 更快地累積到一百次第一名，得到一隻博士皮卡丘。
+     （若網頁的座標資料庫中查詢得到在其他時區還有尚未結束的選秀會可以參加，就會顯示最多前20個最接近的潛在座標以供複製；若查詢不到，可能是全球範圍內的選秀會都已結束，或至少在座標資料庫中的範圍都已結束，這時將會顯示找不到符合條件的潛在座標。）    
+     <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/webpage2.png" width="200px">   
+  6. 使用飛人軟體飛到該當地座標，打開Pokémon Go在當地四處繞繞尋找選秀會參加。
+  7. 若沒有找到選秀會，或沒有找到未被佔領的選秀會，則重新選擇想要參加選秀會的當地座標。
+  8. 更快地累積到一百次第一名，得到一隻博士皮卡丘。
 
 ## Make updates, For Developers or the future ?
 這些座標由我手動不定時添加，但我一個人人力有限，很難大量補充更多的潛在座標，所以如果有人也有自己發現到的潛在座標想要幫忙添加幫助其他玩家，也許可以私訊我的信箱？或是開個Issue告訴我？非常感謝。
