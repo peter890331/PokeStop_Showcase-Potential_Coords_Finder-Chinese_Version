@@ -25,7 +25,7 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 ## Foreword
 在Pokémon GO中，有著一種叫作寶可補給站選秀會的功能，讓玩家們通過比較自己寶可夢的大小來贏取豐厚獎勵。    
 <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/figures/Showcase_icon.png" width="100px">    
-當在有特殊活動時，有些補給站上將出現一個獨特的圖示<img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/figures/figures/Showcase_icon.png" width="20px">，玩家只要點擊該補給站，再點選選秀會按鈕並放入一隻指定寶可夢就能參加選秀會，選秀會結束後，所有參與的玩家都將得到星塵和經驗等獎勵，前三名的玩家還可以得到孵化器和星星碎片等獎勵，且第一名的訓練家將獲得一枚獎牌。    
+當在有特殊活動時，有些補給站上將出現一個獨特的圖示<img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/figures/Showcase_icon.png" width="20px">，玩家只要點擊該補給站，再點選選秀會按鈕並放入一隻指定寶可夢就能參加選秀會，選秀會結束後，所有參與的玩家都將得到星塵和經驗等獎勵，前三名的玩家還可以得到孵化器和星星碎片等獎勵，且第一名的訓練家將獲得一枚獎牌。    
     
 而更重要的是，玩家如果在選秀會獲得過一百次第一名，也就是獎牌達到白金等級，將可以得到一隻博士皮卡丘，眾所皆知，在城市地區遊玩，很難在選秀會獲得第一名，所以這隻博士皮卡丘十分稀有。    
 <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/gh-pages/figures/pikachu.png" width="100px">    
