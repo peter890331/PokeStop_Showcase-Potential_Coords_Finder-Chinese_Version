@@ -174,7 +174,7 @@
               if (utcOffset >= 0) {
                 utcOffset = `+${utcOffset}`;
               }
-              const formattedCoordinate = coordinate.map(coord => coord.toFixed(6));
+              const formattedCoordinate = coordinate.map(coord => coord.toFixed(5));
               // resultText += `UTC ${utcOffset}：  「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」 <button onclick="copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")">複製</button><br>`;
               resultText += `UTC ${utcOffset}，剩餘時間 ${hoursDiff} 小時 ${minutesDiff} 分鐘：<br>「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」<br><button class="copyButton" onclick="copyToClipboard('${formattedCoordinate[0]}, ${formattedCoordinate[1]}')">複製</button><br><br>`;
 

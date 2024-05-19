@@ -63,6 +63,7 @@ PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
 
 ### 座標資料庫更新日誌
 2024/05/16：添加 0 個潛在座標，共 0 個潛在座標。
+2024/05/19：添加 6 個潛在座標，共 6 個潛在座標。
 
 ---
 
