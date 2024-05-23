@@ -73,7 +73,7 @@
   <div style="position: relative;">
     <h1>寶可補給站選秀會 - 潛在座標查詢器</h1>
     <img src="show_case_icon.png" alt="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/show_case_icon.png" style="width: auto; height: 75%; position: absolute; top: -10px; left: 50px; z-index: -1; transform: rotate(-20deg);">
-    <img src="https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/taiwan.png" alt="https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/taiwan.png" style="width: auto; height: 75%; position: absolute; top: 2px; right: -15px; z-index: -1; transform: rotate(10deg);">
+    <img src="taiwan.png" alt="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/taiwan.png" style="width: auto; height: 75%; position: absolute; top: 2px; right: -15px; z-index: -1; transform: rotate(10deg);">
   </div>
   <div id="formContainer">
     <label for="datetime">請選擇寶可補給站選秀會在台灣時區結束的日期與時間：</label>
@@ -200,7 +200,7 @@
         // 讀取資料庫中的座標數據
         async function fetchCoordinates() {
           try {
-            const response = await fetch("https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/croods/coordinates.json");
+            const response = await fetch("https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/croods/coordinates.json");
             return await response.json();
           } 
           catch (error) {
@@ -264,8 +264,8 @@
     // 顯示5秒的圖片
     function show_pikachu_say_yes_Image() {
       const temporaryImage = document.createElement("img");
-      temporaryImage.src = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_yes.png";
-      temporaryImage.alt = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_yes.png";
+      temporaryImage.src = "pikachu_say_yes.png";
+      temporaryImage.alt = "https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/pikachu_say_yes.png";
       temporaryImage.style.cssText = `
           width: 200px;
           height: auto;
@@ -285,8 +285,8 @@
     // 顯示5秒的圖片
     function show_pikachu_say_no_Image() {
       const temporaryImage = document.createElement("img");
-      temporaryImage.src = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_no.png";
-      temporaryImage.alt = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_no.png";
+      temporaryImage.src = "pikachu_say_no.png";
+      temporaryImage.alt = "https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/pikachu_say_no.png";
       temporaryImage.style.cssText = `
           width: 200px;
           height: auto;
@@ -313,8 +313,8 @@
     // 顯示5秒的圖片
     function show_pikachu_say_hi_Image() {
       const temporaryImage = document.createElement("img");
-      temporaryImage.src = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_hi.png";
-      temporaryImage.alt = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_hi.png";
+      temporaryImage.src = "pikachu_say_hi.png";
+      temporaryImage.alt = "https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/pikachu_say_hi.png";
       temporaryImage.style.cssText = `
           width: 200px;
           height: auto;
@@ -334,8 +334,8 @@
     // 顯示5秒的圖片
     function show_pikachu_say_plz_Image() {
       const temporaryImage = document.createElement("img");
-      temporaryImage.src = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_plz.png";
-      temporaryImage.alt = "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu_say_plz.png";
+      temporaryImage.src = "pikachu_say_plz.png";
+      temporaryImage.alt = "https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/pikachu_say_plz.png";
       temporaryImage.style.cssText = `
           width: 200px;
           height: auto;
@@ -385,7 +385,7 @@
 
     
   </script>
-  <img src="https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu.png" alt="https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/blob/figures/figures/pikachu.png" style="width: auto; height: 100px; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
+  <img src="pikachu.png" alt="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder/figures/figures/pikachu.png" style="width: auto; height: 100px; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
 
   <footer style="position: fixed;">
     <p>Copyright © Peter Yu，僅供參考，不負任何法律責任。其餘詳細內容可見我的<a href="https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder">GitHub</a>，喜歡的話可以幫我加個Star喔！謝謝。</p>
