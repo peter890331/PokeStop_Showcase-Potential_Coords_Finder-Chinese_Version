@@ -1,6 +1,6 @@
 # 寶可補給站選秀會 - 潛在座標查詢器 - 中文版 (PokeStop_Showcase-Potential_Croods_Finder-Chinese_Version)
 
-PokeStop_Showcase-Potential_Croods_Finder, made by Peter Yu.
+PokeStop_Showcase-Potential_Croods_Finder-Chinese_Version, made by Peter Yu.
 > This is a coordinate finder webpage used to find the coordinates of showcase in Pokémon GO that are about to end in other time zones and may not be occupied.    
 > The coordinates are added manually by me from time to time, maybe?    
 > 這是一個座標查詢器網頁，用來查詢Pokémon GO中在其他時區即將結束且**可能**未被佔領的選秀會當地座標。    
