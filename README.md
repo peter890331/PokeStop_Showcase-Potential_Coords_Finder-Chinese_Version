@@ -41,7 +41,8 @@ PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 而這些座標我稱之為潛在座標。（雖然選秀會在每季都會在固定的寶可補給站舉辦，但換季之後就不一定，所以我還是以提供當地座標為主。）
 
 設備和軟體要求：
-  1. 一支有使用飛人軟體的手機或電腦，且當然要有玩Pokémon Go。
+  1. 裝有瀏覽器的手機或電腦。
+  2. 一支有使用飛人軟體的手機，且當然要有玩Pokémon Go。
 
 ## How to use, For users
 
