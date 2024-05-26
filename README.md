@@ -55,7 +55,7 @@ PokeStop_Showcase-Potential_Croods_Finder-Chinese_Version, made by Peter Yu.
      （若網頁的座標資料庫中查詢得到在其他時區還有尚未結束的選秀會可以參加，就會顯示最多前20個最接近的潛在座標以供複製；若查詢不到，可能是全球範圍內的選秀會都已結束，或至少在座標資料庫中的範圍都已結束，這時將會顯示找不到符合條件的潛在座標。）    
      <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Croods_Finder-Chinese_Version/blob/figures/figures/webpage2.png" width="500px">   
   6. 使用飛人軟體飛到該潛在座標，打開Pokémon Go在當地四處繞繞尋找選秀會參加。
-  7. 若沒有找到選秀會，或沒有找到未被佔領的選秀會，則重新選擇想要的潛在座標。
+  7. 若沒有找到選秀會，或沒有找到未被佔領的選秀會，則回到步驟4重新選擇想要的潛在座標。
   8. 更快地累積到一百次第一名，得到一隻博士皮卡丘。
 
 ## Make updates, For Developers or the future ?
