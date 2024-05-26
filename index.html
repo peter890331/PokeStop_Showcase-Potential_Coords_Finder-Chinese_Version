@@ -124,7 +124,8 @@
         console.log("當前台灣時間: " + nowDate.tz("Asia/Taipei").format("MM/DD HH:mm"));
 
         // 以時區ID處理夏令和冬令時區，獲得當地時間
-        console.log("當地時間: " + nowDate.tz(timezoneId[0]).format("MM/DD HH:mm"));
+        const localTime = moment(nowDate).tz(timezoneId[0]);
+        console.log("當地時間: " + localTime.format("MM/DD HH:mm"));
 
         // 獲得當地UTC偏移量
         const utcOffset = nowDate.tz(timezoneId[0]).utcOffset()/60;
