@@ -205,8 +205,8 @@
               }
               const formattedCoordinate = coordinate.map(coord => coord.toFixed(5));
               // resultText += `UTC ${utcOffset}：  「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」 <button onclick="copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")">複製</button><br>`;
-              resultText += `UTC ${utcOffset}，剩餘時間 ${hoursDiff} 小時 ${minutesDiff} 分鐘：<br>「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」<br><button class="copyButton" onclick="copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")">複製</button><br><br>`;
-
+              resultText += `UTC ${utcOffset}，剩餘時間 ${hoursDiff} 小時 ${minutesDiff} 分鐘：<br>「${formattedCoordinate[0]}, ${formattedCoordinate[1]}」<br><button class="copyButton" onclick='copyToClipboard("${formattedCoordinate[0]}, ${formattedCoordinate[1]}")'>複製</button><br><br>`;
+              
           }
           resultElement.innerHTML = resultText;
           show_pikachu_say_yes_Image();
@@ -231,31 +231,32 @@
 
     // 顯示提示框
     function copyToClipboard(text) {
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          // 建立一個提示框並顯示
-          const alertBox = document.createElement("div");
-          alertBox.innerHTML = "座標已複製到剪貼簿";
-          alertBox.id = "alertBox";
-          alertBox.style.cssText = `
-            position: fixed;
-            bottom: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #5fb4f5;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            z-index: 9999;
-          `;
-          document.body.appendChild(alertBox);
-          setTimeout(function() {
-            // 2秒後移除提示框
-            alertBox.parentNode.removeChild(alertBox);
-          }, 2000); // 2秒後自動關閉提示框
-        })
-        .catch(err => console.error("無法複製座標:", err));
-    }
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        // 建立一個提示框並顯示
+        const alertBox = document.createElement("div");
+        alertBox.innerHTML = "座標已複製到剪貼簿";
+        alertBox.id = "alertBox";
+        alertBox.style.cssText = `
+          position: fixed;
+          bottom: 10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #5fb4f5;
+          color: white;
+          padding: 15px 30px;
+          border-radius: 5px;
+          z-index: 9999;
+        `;
+        document.body.appendChild(alertBox);
+        setTimeout(function() {
+          // 2秒後移除提示框
+          alertBox.parentNode.removeChild(alertBox);
+        }, 2000); // 2秒後自動關閉提示框
+      })
+      .catch(err => console.error("無法複製座標:", err));
+  }
+
 
     // 顯示警告框
     function showWarningMessage(message) {
