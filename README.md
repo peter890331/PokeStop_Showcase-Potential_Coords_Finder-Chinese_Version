@@ -49,7 +49,7 @@ PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
   1. 先確定當前有特殊活動正在舉辦選秀會。
   2. 使用瀏覽器打開[網頁][1]。    
      <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/webpage1.png" width="500px">   
-  3. 在日期與時間輸入框中輸入選秀會在**台灣時區**結束的日期與時間，並按下確定。    
+  3. 在日期與時間輸入框中輸入選秀會在您當前時區結束的日期與時間，並按下確定。    
   4. 選擇想要的潛在座標並點擊複製。    
      （若網頁的座標資料庫中查詢得到在其他時區還有尚未結束的選秀會可以參加，就會顯示最多前20個最接近的潛在座標以供複製；若查詢不到，可能是全球範圍內的選秀會都已結束，或至少在座標資料庫中的範圍都已結束，這時將會顯示找不到符合條件的潛在座標。）    
      <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/webpage2.png" width="500px">   
