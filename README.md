@@ -2,7 +2,7 @@
 
 PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 > 這是一個座標查詢器網頁，用來查詢Pokémon GO中在其他時區即將結束且**可能**未被佔領的選秀會當地座標。    
-> 這些座標由我手動不定時添加，我有空的話啦。
+> 這些座標由我手動不定時添加，我有空的話啦。    
 > This is a coordinate finder webpage used to find the coordinates of showcase in Pokémon GO that are about to end in other time zones and may not be occupied.    
 > The coordinates are added manually by me from time to time, maybe?    
 
