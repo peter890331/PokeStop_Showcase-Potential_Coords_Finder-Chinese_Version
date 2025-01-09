@@ -60,6 +60,12 @@ PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 ## Make updates, For Developers or the future ?
 這些座標由我手動不定時添加，但我一個人人力有限，很難大量補充更多的潛在座標，所以如果有人也有自己發現到的潛在座標想要幫忙添加幫助其他玩家，也許可以寄到我的信箱？或是開個Issue告訴我？非常感謝。
 
+## Database
+也可以直接訪問我的座標資料庫，所有座標都是公開的，若有人提供自己發現到的潛在座標，也會在座標資料庫中感謝座標提供者。    
+[PokeStop_Showcase-Potential_Coords_Finder-Coords_Database][2]
+
+[2]: https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Coords_Database
+
 ---
 
 ### ❗ 再次警告：僅以此練習網頁製作，請勿在遊戲中使用外掛，否則後果自負！本人對此內容不負任何法律責任。 ❗    
