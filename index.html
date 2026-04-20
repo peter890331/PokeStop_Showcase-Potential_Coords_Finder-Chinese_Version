@@ -164,7 +164,10 @@
             const latitude = coordinate[0];
             const longitude = coordinate[1];
             console.log("緯度：" + latitude + ", 經度：" + longitude);
-            const { localTime, utcOffset, hoursDiff, minutesDiff } = await getLocalTimeAndUTCOffset(latitude, longitude, selectedDateTime);
+            const result = await getLocalTimeAndUTCOffset(latitude, longitude, selectedDateTime);
+
+            if (!result) continue; 
+            const { localTime, utcOffset, hoursDiff, minutesDiff } = result;
 
             // 如果當地時間還沒到輸入的日期與時間，且只篩選最接近的時區
             if (localTime && localTime.format("MM/DD HH:mm") < selectedDateTime.format("MM/DD HH:mm")) {
