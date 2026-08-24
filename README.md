@@ -1,4 +1,4 @@
-# 寶可補給站選秀會 - 潛在座標查詢器 - 中文版 (PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version)
+# 寶可補給站選秀會 - 潛在座標查詢器 - 中文版
 
 PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 > 這是一個座標查詢器網頁，用來查詢Pokémon GO中在其他時區即將結束且**可能**未被佔領的選秀會當地座標。    
@@ -11,8 +11,8 @@ PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/pokemon_go_icon.png" width="300px">
 
 ## Webpage
-  [寶可補給站選秀會 - 潛在座標查詢器 - 中文版 (PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version)][1]    
-  https://peter890331.github.io/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/    
+  [寶可補給站選秀會 - 潛在座標查詢器 - 中文版][1]      
+  [![Website](https://img.shields.io/badge/潛在座標查詢器-網頁-blue?logo=googlechrome)](https://peter890331.github.io/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/)
       
   喜歡的話可以幫我加個Star喔！謝謝。   
   <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/github_star.png" width="250px">
