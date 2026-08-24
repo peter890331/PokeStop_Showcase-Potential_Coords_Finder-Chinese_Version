@@ -1,4 +1,4 @@
-# 寶可補給站選秀會 - 潛在座標查詢器 - 中文版
+# 寶可補給站選秀會 - 潛在座標查詢器
 
 PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
 > 這是一個座標查詢器網頁，用來查詢Pokémon GO中在其他時區即將結束且**可能**未被佔領的選秀會當地座標。    
