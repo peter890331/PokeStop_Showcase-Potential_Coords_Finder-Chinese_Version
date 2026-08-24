@@ -102,12 +102,30 @@
       cursor: pointer;
     }
 
-    /* 手機版 RWD 樣式 */
+    /* 手機版專用 RWD 樣式 */
     @media screen and (max-width: 600px) {
+      /* 1. 隱藏右下角皮卡丘與對話框 */
+      img[alt="pikachu.png"], 
+      img[alt="pikachu_say_yes.png"], 
+      img[alt="pikachu_say_no.png"], 
+      img[alt="pikachu_say_hi.png"], 
+      img[alt="pikachu_say_plz.png"] {
+        display: none !important;
+      }
+
+      /* 2. 標題手機版自動換行並去掉橫線 */
       h1 {
         font-size: 18px;
         padding: 0 10px;
       }
+      .mobile-break {
+        display: block;
+      }
+      .mobile-break::before {
+        content: ""; 
+      }
+
+      /* 3. 標籤與按鈕區塊改為上下排列 */
       label {
         font-size: 14px;
         padding: 0 10px;
@@ -131,7 +149,8 @@
 <body>
   <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/pokemon_go_icon.png" alt="pokemon_go_icon.png" style="width: auto; height: 100px;">
   <div style="position: relative;">
-    <h1>寶可補給站選秀會 - 潛在座標查詢器 - 中文版</h1>
+    <!-- 透過 span 配合 CSS 達成電腦版同一行、手機版自動換行 -->
+    <h1>寶可補給站選秀會 - 潛在座標查詢器 <span class="mobile-break">中文版</span></h1>
     <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/showcase_icon.png" alt="showcase_icon.png" style="width: auto; height: 75%; position: absolute; top: -10px; left: 50px; z-index: -1; transform: rotate(-20deg);">
     <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/taiwan.png" alt="taiwan.png" style="width: auto; height: 75%; position: absolute; top: 2px; right: 15px; z-index: -1; transform: rotate(10deg);">
   </div>
@@ -309,7 +328,7 @@
 
     async function fetchCoordinates() {
       try {
-        const response = await fetch("https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Coords_Database/master/coordinates.json");
+        const response = type = await fetch("https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Coords_Database/master/coordinates.json");
         return await response.json();
       } 
       catch (error) {
@@ -469,7 +488,7 @@
   <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/pikachu.png" alt="pikachu.png" style="width: auto; height: 100px; position: fixed; bottom: 120px; right: 30px; z-index: -1;">
 
   <footer style="position: fixed;">
-    <p>Copyright © Peter Yu!<br>僅供參考，不負任何法律責任。<br>其餘詳細內容可見我的 <a href="https://github.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version">GitHub</a>，喜歡的話可以幫我加個 star 喔！謝謝。</p>
+    <p>Copyright © Peter Yu!<br>僅供參考，不負任何法律責任。<br>其餘詳細內容可見我的 <a href="https://github.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version">GitHub</a>，<br>喜歡的話可以幫我加個 star 喔！謝謝。</p>
     <img src="https://api.visitorbadge.io/api/visitors?path=peter890331.PokeStop_Showcase_Chinese" alt="visitor badge">
   </footer>
 
