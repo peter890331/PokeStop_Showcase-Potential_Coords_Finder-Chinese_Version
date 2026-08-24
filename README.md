@@ -15,7 +15,7 @@ PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version, made by Peter Yu.
   [![Website](https://img.shields.io/badge/潛在座標查詢器-網頁-blue?logo=googlechrome)](https://peter890331.github.io/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/)
       
   喜歡的話可以幫我加個Star喔！謝謝。   
-  <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/github_star.png" width="250px">
+  [![GitHub stars](https://img.shields.io/github/stars/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version?style=social)](https://github.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version)
       
   <img src= "https://github.com/peter890331/PokeStop_Showcase-Potential_Coords_Finder-Chinese_Version/blob/figures/figures/webpage1.png" width="500px">   
   
