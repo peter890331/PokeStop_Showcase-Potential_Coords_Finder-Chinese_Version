@@ -101,10 +101,7 @@
       padding: 5px 0;
       cursor: pointer;
     }
-
-    /* 手機版專用 RWD 樣式 */
     @media screen and (max-width: 600px) {
-      /* 隱藏皮卡丘 */
       img[alt="pikachu.png"], 
       img[alt="pikachu_say_yes.png"], 
       img[alt="pikachu_say_no.png"], 
@@ -112,8 +109,6 @@
       img[alt="pikachu_say_plz.png"] {
         display: none !important;
       }
-
-      /* 標題手機版自動換行 */
       h1 {
         font-size: 18px;
         padding: 0 10px;
@@ -124,17 +119,13 @@
       .mobile-break::before {
         content: ""; 
       }
-
-      /* 標籤手機版換行 */
       label {
         font-size: 14px;
         padding: 0 10px;
       }
       .label-break {
-        display: block; /* 讓這段文字在手機版強制換行 */
+        display: block;
       }
-
-      /* 按鈕與輸入框調整 */
       #confirmButtonContainer {
         flex-direction: column;
         width: 100%;
@@ -154,7 +145,6 @@
 <body>
   <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/pokemon_go_icon.png" alt="pokemon_go_icon.png" style="width: auto; height: 100px;">
   <div style="position: relative;">
-    <!-- 透過 span 配合 CSS 達成電腦版同一行、手機版自動換行 -->
     <h1>寶可補給站選秀會 - 潛在座標查詢器 <span class="mobile-break">中文版</span></h1>
     <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/showcase_icon.png" alt="showcase_icon.png" style="width: auto; height: 75%; position: absolute; top: -10px; left: 50px; z-index: -1; transform: rotate(-20deg);">
     <img src="https://raw.githubusercontent.com/peter890331/PokeStop_Showcase-Potential_coords_Finder-Chinese_Version/figures/figures/taiwan.png" alt="taiwan.png" style="width: auto; height: 75%; position: absolute; top: 2px; right: 15px; z-index: -1; transform: rotate(10deg);">
@@ -356,6 +346,7 @@
             color: white;
             padding: 15px 30px;
             border-radius: 5px;
+            font-size: 13px;
             z-index: 9999;
           `;
           document.body.appendChild(alertBox);
