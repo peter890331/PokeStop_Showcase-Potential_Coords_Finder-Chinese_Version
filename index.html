@@ -21,7 +21,9 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 80vh;
-      margin-top: 100px;
+      margin-top: 50px;
+      margin-left: 15px;
+      margin-right: 15px;
       background-color: #7bcff7;
     }
     footer {
@@ -36,36 +38,47 @@
     }
     h1 {
       font-size: 20px;
+      text-align: center;
     }
     #formContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      max-width: 400px;
     }
     label {
       margin-bottom: 20px;
       font-size: 15px;
+      text-align: center;
     }
     input {
-      margin-bottom: 60px;
+      margin-bottom: 0px;
+      padding: 8px;
     }
     #confirmButtonContainer {
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
     }
     #confirmButton {
       margin-left: 10px;
-      margin-bottom: 60px;
+      margin-bottom: 0px;
+      padding: 8px 15px;
+      cursor: pointer;
     }
     #result {
       position: relative;
       margin-top: 10px;
-      width: 300px;
+      width: 100%;
+      max-width: 320px;
       text-align: left;
+      word-break: break-all;
     }
     .copyButton {
-      width: 300px;
+      width: 100%;
     }
     .loading-container {
       display: none;
@@ -77,7 +90,8 @@
       grid-template-columns: 80px auto 80px;
       justify-content: center;
       align-items: center;
-      width: 300px;
+      width: 100%;
+      max-width: 320px;
       gap: 10px;
       margin-top: 20px;
       margin-bottom: 150px;
@@ -86,6 +100,31 @@
       width: 100%;
       padding: 5px 0;
       cursor: pointer;
+    }
+
+    /* 手機版 RWD 樣式 */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 18px;
+        padding: 0 10px;
+      }
+      label {
+        font-size: 14px;
+        padding: 0 10px;
+      }
+      #confirmButtonContainer {
+        flex-direction: column;
+        width: 100%;
+      }
+      #confirmButton {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 120px;
+      }
+      input[type="datetime-local"] {
+        width: 100%;
+        max-width: 280px;
+      }
     }
   </style>
 </head>
